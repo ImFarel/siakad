@@ -1,14 +1,20 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "spatie/laravel-permission": "^2.1",
+        "laracasts/flash": "^3.0",
+        "laravelcollective/html": "^5.3.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -32,8 +38,12 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
+        },
+        "comments": {
+            "spatie/laravel-permission": "Buat ACL Laravel nya",
+            "laracasts/flash": "just a simple flash",
+            "laravelcollective/html": "Easier Laravel form & html"
         }
     },
     "scripts": {
