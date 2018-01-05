@@ -21,6 +21,11 @@ class MahasiswaController extends Controller
       # code...
     }
 
+    public function read($id)
+    {
+      # code...
+    }
+
     public function edit($id)
     {
 

@@ -18,15 +18,16 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
+        <li class="header"> Menu Utama</li>
         <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
           <a href="{{ route('dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        <li class="header"> Data Mahasiswa</li>
+        <!-- Optionally, you can add icons to the links -->
         <li class=" treeview"> <!--{{Request::is('/dashboard*')? 'active menu-open' : '' }}-->
-          <a href="#"><i class="fa fa-link"></i> <span>Kartu Rencana Study</span>
+          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Rencana Study</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -38,7 +39,46 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Kartu Hasil Study</span>
+          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Hasil Study</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Kartu Rencana Study</a></li>
+            <li><a href="#">Kartu Hasil Study</a></li>
+            <li><a href="#">Transkrip Nilai</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Transkrip Nilai</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Kartu Rencana Study</a></li>
+            <li><a href="#">Kartu Hasil Study</a></li>
+            <li><a href="#">Transkrip Nilai</a></li>
+          </ul>
+        </li>
+
+        <li class="header"> Data Dosen</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class=" treeview"> <!--{{Request::is('/dashboard*')? 'active menu-open' : '' }}-->
+          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Rencana Study</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Kartu Rencana Study</a></li>
+            <li><a href="#">Kartu Hasil Study</a></li>
+            <li><a href="#">Transkrip Nilai</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Hasil Study</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>

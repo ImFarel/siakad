@@ -20,6 +20,7 @@ Route::group( [ 'prefix' => 'dashboard' ] , function() {
   Route::get('/mahasiswa','MahasiswaController@index')->name('mahasiswa.index');
   Route::post('/mahasiswa/create','MahasiswaController@create')->name('mahasiswa.create');
   Route::get('/mahasiswa/store','MahasiswaController@store')->name('mahasiswa.store');
+  Route::get('/mahasiswa/read/{id}','MahasiswaController@read')->name('mahasiswa.read');
   Route::get('/mahasiswa/edit/{id}','MahasiswaController@edit')->name('mahasiswa.edit');
   Route::get('/mahasiswa/update/{id}','MahasiswaController@update')->name('mahasiswa.update');
   Route::get('/mahasiswa/destroy/{id}','MahasiswaController@destroy')->name('mahasiswa.destroy');
