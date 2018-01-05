@@ -75,6 +75,6 @@
   <script src="{{asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
-
+  @yield('script')
 </body>
 </html>

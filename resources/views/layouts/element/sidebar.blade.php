@@ -20,7 +20,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
+        <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
           <a href="{{ route('dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>

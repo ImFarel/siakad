@@ -8,7 +8,31 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-      return view('coba');
-      
+      return view('mahasiswa.index');
+    }
+
+    public function create()
+    {
+
+    }
+
+    public function store(Request $request)
+    {
+      # code...
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+
     }
 }
