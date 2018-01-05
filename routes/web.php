@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); })->name('back');
+Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+Route::get('/mahasiswa','MahasiswaController@index')->name('mahasiswa.index');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/welcome', 'HomeController@index')->name('welcome');
