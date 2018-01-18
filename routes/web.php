@@ -11,12 +11,24 @@
 |
 */
 
-// Route::get('/', function () { return view('welcome'); })->name('back');
-
-Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+Route::get('/', function () { return view('welcome'); })->name('back');
 
 Auth::routes();
+
+Route::get('/dashboard', function () {
+  return view('dashboard');
+});
+
 Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
+  //mahasiswa
+  //
+
+
+
+
+
+
+
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');
   Route::get('/users/add', 'UserController@add')->name('users.add');
@@ -26,7 +38,14 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::put('/users/editprocess/{id}', 'UserController@editprocess')->name('users.editprocess');
   Route::get('/users/delete/{id}', 'UserController@delete')->name('users.delete');
 
-  Route::resource('/roles','RoleController');
-});
+  // Role and Permission
+  Route::get('/roles', 'RoleController@index')->name('roles.index');
+  Route::get('/roles/add', 'RoleController@add')->name('roles.add');
+  Route::get('/roles/edit/{id}', 'RoleController@edit')->name('roles.edit');
+  Route::get('/roles/delete/{id}', 'RoleController@delete')->name('roles.delete');
+  Route::post('/roles/addprocess', 'RoleController@addprocess')->name('roles.addprocess');
+  Route::put('/roles/editprocess/{id}', 'RoleController@editprocess')->name('roles.editprocess');
 
-Route::get('/welcome', 'HomeController@index')->name('welcome');
+  Route::get('/permissions/{id}', 'RoleController@permission')->name('roles.permission');
+  Route::put('/permissions/editpermission/{id}', 'RoleController@editpermission')->name('roles.editpermission');
+});

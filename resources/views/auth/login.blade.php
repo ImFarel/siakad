@@ -1,7 +1,6 @@
-@extends('layouts.applogin')
+@extends('layouts.template-login')
 @section('script')
 <script type="text/javascript">
-  console.log('halee');
 </script>
 @endsection
 @section('login-content')
@@ -13,31 +12,39 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to Siakad <br>Admin</p>
 
-    <form action="../dashboard/dashboard.php" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username">
+    <form action="{{route('login')}}" method="post">
+      {{ csrf_field() }}
+
+      <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+        @if ($errors->has('email'))
+        <label class="control-label" for="emailError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('email') }}</label>
+        @endif
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input type="email" name="email" value="{{ old('email') }}" id="email" class="form-control" placeholder="E-mail Address">
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+
+      <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+        @if ($errors->has('password'))
+        <label class="control-label" for="passwordError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('password') }}</label>
+        @endif
+        <input type="password" name="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+              <input name="remember" type="checkbox" {{old('remember') ? 'checked' : '' }}> Remember Me
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <a href="../dashboard/dashboard.php"><button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button></a>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
-    <!-- /.social-auth-links -->
   </div>
   <!-- /.login-box-body -->
 </div>

@@ -4,16 +4,27 @@
 
 @section('page-title', 'List Users')
 
+@section('css')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+@endsection
 @section('content')
 <div id="flash-msg">
   @include('flash::message')
 </div>
 <div class="box">
-  <div class="col-sm-12">
-    <!-- @ can('add_users') -->
-    <a href="{{ route('users.add') }}" class="btn btn-flat btn-info btn-flat"> Add New Users</a>
-    <!-- @ endcan -->
+  <div class="box-header">
+    <div class="col-md-3">
+      @can('add_users')
+      <a href="{{ route('users.add') }}">
+        <button type="button" class="btn btn-info btn-flat">
+          <i class="fa fa-plus-square"></i> Tambah Users
+        </button>
+      </a>
+      @endcan
+    </div>
   </div>
+  <!-- /.box-header  -->
   <div class="box-body">
     <table id="myTable" class="table table-bordered table-striped">
       <thead>
@@ -54,12 +65,6 @@
 <!-- DataTables -->
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script type="text/javascript">
-  $(function () {
-    $('#example1').DataTable()
-  })
-</script>
-
 <script>
   $(document).ready(function() {
     $('#myTable').DataTable();
