@@ -13,7 +13,7 @@ class MahasiswaController extends Controller
 
     public function create()
     {
-
+      return view('mahasiswa.create');
     }
 
     public function store(Request $request)

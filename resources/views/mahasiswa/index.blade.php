@@ -12,25 +12,28 @@
 </div>
 <div class="box">
 
-  <div class="box-header">
+  <!-- <div class="box-header">
     <div class="col-md-3">
-      <a href="">
-        <button type="button" class="btn btn-info btn-flat">
-          <i class="fa fa-plus-square"></i> Tambah Menu Cabang
+      <a href="{ {route('mahasiswa.create')}}">
+        <button type="button" class="btn btn-flat btn-info btn-flat">
+          <i class="fa fa-user"> </i> Tambah Mahasiswa Baru
         </button>
       </a>
     </div>
-  </div>
+  </div> -->
 
   <!-- /.box-header -->
   <div class="box-body">
     <table id="example1" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>No</th>
-          <th>Nama menu</th>
-          <th>Harga</th>
-          <th>Action</th>
+          <th>NIM</th>
+          <th>Nama Mahasiswa</th>
+          <th>Jenis Kelamin</th>
+          <th>Telepon</th>
+          <th>Semester</th>
+          <th>Aksi</th>
+
         </tr>
       </thead>
       <tbody>
@@ -38,10 +41,17 @@
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
+          <td></td>
           <td>
-            <a title="Edit" href="" class="btn btn-success btn-md"><i class="fa fa-edit"></i></a>
+            <div class="text-center">
+              <a title="Read More" href="" class="btn btn-info btn-flat btn-md"><i class="fa fa-info"></i></a>
 
-            <a title="Delete" href="" class="btn btn-danger btn-md" onclick="return confirm('Are yous sure ? (DELETE PERMANENTLY)');"><i class="fa fa-trash"></i></a>
+              <a title="Edit" href="" class="btn btn-primary btn-flat btn-md"><i class="fa fa-edit"></i></a>
+
+            </div>
+
+            <!-- <a title="Delete" href="" class="btn btn-danger btn-flat btn-md" onclick="return confirm('Are yous sure ? (DELETE PERMANENTLY)');"><i class="fa fa-trash"></i></a> -->
           </td>
         </tr>
       </tbody>

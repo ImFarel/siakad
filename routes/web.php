@@ -11,23 +11,22 @@
 |
 */
 
-Route::get('/', function () { return view('welcome'); })->name('back');
+// Route::get('/', function () { return view('welcome'); })->name('back');
 
 Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
-Route::group( [ 'prefix' => 'dashboard' ] , function() {
-
-  //mahasiswa
-  Route::get('/mahasiswa','MahasiswaController@index')->name('mahasiswa.index');
-  Route::post('/mahasiswa/create','MahasiswaController@create')->name('mahasiswa.create');
-  Route::get('/mahasiswa/store','MahasiswaController@store')->name('mahasiswa.store');
-  Route::get('/mahasiswa/read/{id}','MahasiswaController@read')->name('mahasiswa.read');
-  Route::get('/mahasiswa/edit/{id}','MahasiswaController@edit')->name('mahasiswa.edit');
-  Route::get('/mahasiswa/update/{id}','MahasiswaController@update')->name('mahasiswa.update');
-  Route::get('/mahasiswa/destroy/{id}','MahasiswaController@destroy')->name('mahasiswa.destroy');
-
-});
-
-
 
 Auth::routes();
+Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
+  //Users
+  Route::get('/users', 'UserController@index')->name('users.index');
+  Route::get('/users/add', 'UserController@add')->name('users.add');
+  Route::get('/users/view/{id}', 'UserController@view')->name('users.view');
+  Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
+  Route::post('/users/addprocess', 'UserController@addprocess')->name('users.addprocess');
+  Route::put('/users/editprocess/{id}', 'UserController@editprocess')->name('users.editprocess');
+  Route::get('/users/delete/{id}', 'UserController@delete')->name('users.delete');
+
+  Route::resource('/roles','RoleController');
+});
+
 Route::get('/welcome', 'HomeController@index')->name('welcome');
