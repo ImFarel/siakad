@@ -23,17 +23,17 @@
 
         <li class="header">&mdash; Menu Utama</li>
         <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-          <a href="{{ url('/dashboard') }}">
+          <a href="{{ route('dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-
+        @if (Auth::user()->roles->implode('name', ', ') == "Mahasiswa") <!--//Menu ini hanya dapat di tampilkan di mahasiswa-->
         <li class="header">&mdash; Data Mahasiswa</li>
         <li class=" treeview"> <!--{{Request::is('/dashboard*')? 'active menu-open' : '' }}-->
           <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Rencana Study</span>
             <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="#">Kartu Rencana Study</a></li>
@@ -41,97 +41,30 @@
             <li><a href="#">Transkrip Nilai</a></li>
           </ul>
         </li>
-
+        @endif
+        <li class="header">&mdash;User Management</li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Hasil Study</span>
+          <a href="#"><i class="fa fa-link"></i> <span>User</span>
             <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Kartu Rencana Study</a></li>
-            <li><a href="#">Kartu Hasil Study</a></li>
-            <li><a href="#">Transkrip Nilai</a></li>
+            <li><a href="{{route('users.index')}}">List user</a></li>
+            <li><a href="{{route('users.add')}}">Add user</a></li>
           </ul>
         </li>
-
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Transkrip Nilai</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Roles & Permission</span>
             <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Kartu Rencana Study</a></li>
-            <li><a href="#">Kartu Hasil Study</a></li>
-            <li><a href="#">Transkrip Nilai</a></li>
+            <li><a href="{{route('roles.index')}}">List roles</a></li>
+            <li><a href="{{route('roles.add')}}">Add roles</a></li>
           </ul>
         </li>
-
-        <li class="header">&mdash; Data Dosen</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class=" treeview"> <!--{{Request::is('/dashboard*')? 'active menu-open' : '' }}-->
-          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Rencana Study</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Kartu Rencana Study</a></li>
-            <li><a href="#">Kartu Hasil Study</a></li>
-            <li><a href="#">Transkrip Nilai</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-credit-card"></i> <span>Kartu Hasil Study</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Kartu Rencana Study</a></li>
-            <li><a href="#">Kartu Hasil Study</a></li>
-            <li><a href="#">Transkrip Nilai</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Transkrip Nilai</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Kartu Rencana Study</a></li>
-            <li><a href="#">Kartu Hasil Study</a></li>
-            <li><a href="#">Transkrip Nilai</a></li>
-          </ul>
-        </li>
-
-          <li class="header">&mdash;User Management</li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-link"></i> <span>User</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="{{route('users.index')}}">List user</a></li>
-              <li><a href="{{route('users.add')}}">Add user</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-link"></i> <span>Roles & Permission</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="{{route('roles.index')}}">List roles</a></li>
-              <li><a href="{{route('roles.add')}}">Add roles</a></li>
-            </ul>
-          </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
