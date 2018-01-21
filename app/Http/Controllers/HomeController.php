@@ -26,5 +26,13 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    
+    /**
+     * Show if un Unauthorized
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function unauthorized()
+     {
+         return view('errors.403');
+     }
 }

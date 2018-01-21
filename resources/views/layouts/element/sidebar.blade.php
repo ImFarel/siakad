@@ -42,6 +42,23 @@
           </ul>
         </li>
         @endif
+
+        <!-- @ can('') -->
+        <li class="header">&mdash;Menu Dosen</li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>User</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('users.index')}}">List user</a></li>
+            <li><a href="{{route('users.add')}}">Add user</a></li>
+          </ul>
+        </li>
+        <!-- @ endcan -->
+
+        @can('view_users')
         <li class="header">&mdash;User Management</li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>User</span>
@@ -54,6 +71,9 @@
             <li><a href="{{route('users.add')}}">Add user</a></li>
           </ul>
         </li>
+        @endcan
+
+        @can('view_roles')
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Roles & Permission</span>
             <span class="pull-right-container">
@@ -65,6 +85,7 @@
             <li><a href="{{route('roles.add')}}">Add roles</a></li>
           </ul>
         </li>
+        @endcan
       </ul>
       <!-- /.sidebar-menu -->
     </section>

@@ -2,6 +2,7 @@
 @section('title','Dashboard')
 <!-- @ section('page-title','Dashboard') -->
 @section('content')
+@if (Auth::user()->roles->implode('name', ', ') == "Mahasiswa") <!--//Menu ini hanya dapat di tampilkan di mahasiswa-->
 <!-- Small boxes (Stat box) -->
 <div class="row">
   <div class="col-lg-4 col-xs-6">
@@ -51,6 +52,7 @@
   <!-- ./col -->
 </div>
 <!-- /.row -->
+@endif
 <div class="alert alert-info alert-dismissible">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
   <h4><i class="icon fa fa-info"></i>Welcome !</h4>

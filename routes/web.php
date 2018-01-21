@@ -14,7 +14,7 @@
 Route::get('/', function () { return view('welcome'); })->name('back');
 
 Auth::routes();
-
+Route::get('/403', 'HomeController@unauthorized')->name('403');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
