@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Progstu extends Model
 {
-    //
+  protected $table = 'progstu';
 }

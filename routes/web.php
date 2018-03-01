@@ -19,11 +19,22 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   //mahasiswa
+  Route::get('/students','MahasiswaController@index')->name('mahasiswa.index');
+  Route::get('/students/register','MahasiswaController@create')->name('mahasiswa.create');
+  Route::post('/students/register/process','MahasiswaController@store')->name('mahasiswa.store');
+  Route::get('/students/read/{id}','MahasiswaController@read')->name('mahasiswa.read');
+  Route::get('/students/edit/{id}','MahasiswaController@edit')->name('mahasiswa.edit');
+  Route::put('/students/update/{id}','MahasiswaController@update')->name('mahasiswa.update');
+  Route::delete('/students/delete/{id}','MahasiswaController@destroy')->name('mahasiswa.delete');
 
-
-
-
-
+  //dosen
+  Route::get('/lecturers','DosenController@index')->name('dosen.index');
+  Route::get('/lecturers/register','DosenController@create')->name('dosen.create');
+  Route::post('/lecturers/register/process','DosenController@store')->name('dosen.store');
+  Route::get('/lecturers/read/{id}','DosenController@read')->name('dosen.read');
+  Route::get('/lecturers/edit/{id}','DosenController@edit')->name('dosen.edit');
+  Route::put('/lecturers/update/{id}','DosenController@update')->name('dosen.update');
+  Route::delete('/lecturers/delete/{id}','DosenController@destroy')->name('dosen.delete');
 
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');

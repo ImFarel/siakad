@@ -1,0 +1,21 @@
+ALTER TABLE `mahasiswa`
+ADD `asal_sekolah` VARCHAR(45) NOT NULL AFTER `kelas`,
+ADD `nama_sekolah` VARCHAR(45) NOT NULL AFTER `asal_sekolah`,
+ADD `tahun_lulus` varchar(45) DEFAULT NULL AFTER `nama_sekolah`,
+ADD `no_ijazah` varchar(45) DEFAULT NULL AFTER `tahun_lulus`,
+ADD `alamat_sekolah` varchar(45) DEFAULT NULL AFTER `no_ijazah`,
+ADD `nama_or` varchar(45) DEFAULT NULL AFTER `alamat_sekolah`,
+ADD `no_tlp_or` varchar(14) DEFAULT NULL AFTER `nama_or`,
+ADD `email_or` varchar(45) DEFAULT NULL AFTER `no_tlp_or`,
+ADD `pekerjaan_or` varchar(15) DEFAULT NULL AFTER `email_or`,
+ADD `instansi_or` varchar(45) DEFAULT NULL AFTER `pekerjaan_or`,
+ADD `pend_or` varchar(7) DEFAULT NULL AFTER `instansi_or`,
+ADD `tempat_lahir` varchar(45) DEFAULT NULL AFTER `pend_or`,
+ADD `tanggal_lahir` varchar(45) DEFAULT NULL AFTER `tempat_lahir`,
+ADD `status_martial` varchar(45) DEFAULT NULL AFTER `tanggal_lahir`,
+ADD `agama` varchar(45) DEFAULT NULL AFTER `status_martial`,
+ADD `no_tlp` varchar(45) DEFAULT NULL AFTER `agama`,
+ADD `warga_negara` varchar(45) DEFAULT NULL AFTER `no_tlp`,
+ADD `tlp_rmh` varchar(45) DEFAULT NULL AFTER `warga_negara`,
+ADD `bbm` varchar(45) DEFAULT NULL AFTER `tlp_rmh`;
+UPDATE `mahasiswa` SET `asal_sekolah` = 'smk', `nama_sekolah` = 'SMK Wikrama', `tahun_lulus` = '2017/2018' , `no_ijazah` = '1312830129301', `alamat_sekolah` = 'dawadadwwdada', `nama_or` = 'Farel Ahmad', `no_tlp_or` = '1231231', `email_or` = 'dawda@gmail.com' , `pekerjaan_or` = 'PNS', `instansi_or` = NULL, `pend_or` = 'S3', `tempat_lahir`='Jombang', `tanggal_lahir`='1999-11-27', `status_martial`='Belum Menikah', `agama`='Islam', `no_tlp`='213123113', `warga_negara`='WNI', `tlp_rmh` = NULL, `bbm` = 'JB112B12' WHERE `mahasiswa`.`id` = 1

@@ -27,6 +27,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+
         @if (Auth::user()->roles->implode('name', ', ') == "Mahasiswa") <!--//Menu ini hanya dapat di tampilkan di mahasiswa-->
         <li class="header">&mdash; Data Mahasiswa</li>
         <li class=" treeview"> <!--{{Request::is('/dashboard*')? 'active menu-open' : '' }}-->
@@ -43,6 +44,7 @@
         </li>
         @endif
 
+        @if (Auth::user()->roles->implode('name', ', ') == "Dosen") <!--//Menu ini hanya dapat di tampilkan di dosen-->
         <!-- @ can('') -->
         <li class="header">&mdash;Menu Dosen</li>
         <li class="treeview">
@@ -57,6 +59,33 @@
           </ul>
         </li>
         <!-- @ endcan -->
+        @endif
+
+        <li class="header">&mdash;Mahasiswa Modules</li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Mahasiswa</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('mahasiswa.index')}}">List Mahasiswa</a></li>
+            <li><a href="{{route('mahasiswa.create')}}">Pendaftaran Mahasiswa</a></li>
+          </ul>
+        </li>
+
+        <li class="header">&mdash;Dosen Modules</li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Dosen</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
+            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+          </ul>
+        </li>
 
         @can('view_users')
         <li class="header">&mdash;User Management</li>
