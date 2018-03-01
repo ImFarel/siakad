@@ -271,45 +271,64 @@
         <label>Ekonomi & Manajemen:</label><label class="required"> *</label>
         <div class="form-grup">
           <div class="col-md-12">
-            <div class="radio">
-              <?php if ($selectedProg == 6): ?>
-                <input type="radio" name="progstu_id" value="6" checked>D3 Keuangan Perbankan</input>
-              <?php else: ?>
+            <?php if (!empty($_GET['id'])): ?>
+              <div class="radio">
+                <?php if ($selectedProg == 6): ?>
+                  <input type="radio" name="progstu_id" value="6" checked>D3 Keuangan Perbankan</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="6" >D3 Keuangan Perbankan</input>
+                <?php endif; ?>
+              </div>
+              <div class="radio">
+                <?php if ($selectedProg == 4): ?>
+                  <input type="radio" name="progstu_id" value="4" checked>D3 Akuntansi</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="4" >D3 Akuntansi</input>
+                <?php endif; ?>
+
+              </div>
+              <div class="radio">
+                <?php if ($selectedProg == 3): ?>
+                  <input type="radio" name="progstu_id" value="3" checked>S1 Akuntansi</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="3" >S1 Akuntansi</input>
+                <?php endif; ?>
+
+              </div>
+              <div class="radio">
+                <?php if ($selectedProg == 7): ?>
+                  <input type="radio" name="progstu_id" value="7" checked>S1 Manajemen</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="7">S1 Manajemen</input>
+                <?php endif; ?>
+
+              </div>
+              <div class="radio">
+                <?php if ($selectedProg == 8): ?>
+                  <input type="radio" name="progstu_id" value="8" checked>D3 Manajemen Perpajakan</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="8" >D3 Manajemen Perpajakan</input>
+                <?php endif; ?>
+
+              </div>
+            <?php else: ?>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="6" >D3 Keuangan Perbankan</input>
-              <?php endif; ?>
-            </div>
-            <div class="radio">
-              <?php if ($selectedProg == 4): ?>
-                <input type="radio" name="progstu_id" value="4" checked>D3 Akuntansi</input>
-              <?php else: ?>
+              </div>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="4" >D3 Akuntansi</input>
-              <?php endif; ?>
-
-            </div>
-            <div class="radio">
-              <?php if ($selectedProg == 3): ?>
-                <input type="radio" name="progstu_id" value="3" checked>S1 Akuntansi</input>
-              <?php else: ?>
+              </div>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="3" >S1 Akuntansi</input>
-              <?php endif; ?>
-
-            </div>
-            <div class="radio">
-              <?php if ($selectedProg == 7): ?>
-                <input type="radio" name="progstu_id" value="7" checked>S1 Manajemen</input>
-              <?php else: ?>
+              </div>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="7">S1 Manajemen</input>
-              <?php endif; ?>
-
-            </div>
-            <div class="radio">
-              <?php if ($selectedProg == 8): ?>
-                <input type="radio" name="progstu_id" value="8" checked>D3 Manajemen Perpajakan</input>
-              <?php else: ?>
+              </div>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="8" >D3 Manajemen Perpajakan</input>
-              <?php endif; ?>
+              </div>
+            <?php endif; ?>
 
-            </div>
           </div>
         </div>
       </div>
@@ -318,28 +337,40 @@
         <label>Informatika:</label><label class="required"> *</label>
         <div class="form-grup">
           <div class="col-md-12">
-            <div class="radio">
-              <?php if ($selectedProg == 1): ?>
-                <input type="radio" name="progstu_id" value="1" checked>S1 Teknik Informatika</input>
-              <?php else: ?>
+            <?php if (!empty($_GET['id'])): ?>
+              <div class="radio">
+                <?php if ($selectedProg == 1): ?>
+                  <input type="radio" name="progstu_id" value="1" checked>S1 Teknik Informatika</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="1" >S1 Teknik Informatika</input>
+                <?php endif; ?>
+              </div>
+              <div class="radio">
+                <?php if ($selectedProg == 2): ?>
+                  <input type="radio" name="progstu_id" value="2" checked>D3 Komputerisasi Akuntansi</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="2" >D3 Komputerisasi Akuntansi</input>
+                <?php endif; ?>
+              </div>
+              <div class="radio">
+                <?php if ($selectedProg == 5): ?>
+                  <input type="radio" name="progstu_id" value="5" checked>D3 Manajemen Informatika</input>
+                <?php else: ?>
+                  <input type="radio" name="progstu_id" value="5" >D3 Manajemen Informatika</input>
+                <?php endif; ?>
+              </div>
+            <?php else: ?>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="1" >S1 Teknik Informatika</input>
-              <?php endif; ?>
-            </div>
-            <div class="radio">
-              <?php if ($selectedProg == 2): ?>
-                <input type="radio" name="progstu_id" value="2" checked>D3 Komputerisasi Akuntansi</input>
-              <?php else: ?>
+              </div>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="2" >D3 Komputerisasi Akuntansi</input>
-              <?php endif; ?>
-            </div>
-            <div class="radio">
-              <?php if ($selectedProg == 5): ?>
-                <input type="radio" name="progstu_id" value="5" checked>D3 Manajemen Informatika</input>
-              <?php else: ?>
+              </div>
+              <div class="radio">
                 <input type="radio" name="progstu_id" value="5" >D3 Manajemen Informatika</input>
-              <?php endif; ?>
+              </div>
+            <?php endif; ?>
 
-            </div>
           </div>
         </div>
 
@@ -347,7 +378,6 @@
 
     </div>
   </div>
-</div>
 </div>
 <div class="col-md-6">
 <?php if (!empty($data->foto)): ?>

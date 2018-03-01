@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 <link rel="stylesheet" href="{{asset('admin/plugins/timepicker/bootstrap-timepicker.min.css')}}">
 <style media="screen">
-  .required{
-     color:red;
-     font-weight: 900;
-  }
+.required{
+  color:red;
+  font-weight: 900;
+}
 </style>
 @endsection
 
@@ -21,25 +21,13 @@
       <h3 class="box-title">Data Diri</h3>
     </div>
     <!-- /.box-header -->
-    {!! Form::model($data, ['method' => 'PUT', 'route' => ['mahasiswa.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
+    {!! Form::model($data, ['method' => 'PUT', 'route' => ['dosen.update',  $data->id ], 'class' => 'form-horizontal','enctype'=>'multipart/form-data' ]) !!}
 
-    @include('mahasiswa._form')
-    <div class="col-md-2">
-      <div class="form-group">
-        <div class="radio">
-          <?php if (empty($userRedy)): ?>
-            <input type="radio" name="entity" value="{{$ser}}" checked>Jadikan User</input>
-          <?php else: ?>
-            <input type="radio" name="entity" value="{{$ser}}" >Jadikan User</input>
-          <?php endif; ?>
-        </div>
+    @include('dosen._form')
 
-      </div>
-
+    <div class="box-footer text-right">
+      <button type="submit" class="btn btn-flat btn-primary"> Update Data</button>
     </div>
-      <div class="box-footer text-right">
-        <button type="submit" class="btn btn-flat btn-primary"> Update Data</button>
-      </div>
     {!! Form::close() !!}
   </div>
   <!-- /.box -->

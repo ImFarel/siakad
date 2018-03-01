@@ -1,6 +1,6 @@
 @extends('layouts.template-dashboard')
-@section('title', 'Mahasiswa')
-@section('page-title', 'Mahasiswa')
+@section('title', 'Dosen')
+@section('page-title', 'Dosen')
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
@@ -14,9 +14,9 @@
 
   <div class="box-header">
     <div class="col-md-3">
-      <a href="{{route('mahasiswa.create')}}">
+      <a href="{{route('dosen.create')}}">
         <button type="button" class="btn btn-flat btn-info btn-flat">
-          <i class="fa fa-user"> </i> Tambah Mahasiswa Baru
+          <i class="fa fa-user"> </i> Tambah Dosen Baru
         </button>
       </a>
     </div>
@@ -28,30 +28,27 @@
     <table id="example1" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>NIM</th>
-          <th>Nama Mahasiswa</th>
+          <th>NID</th>
+          <th>Nama Dosen</th>
           <th>Jenis Kelamin</th>
-          <th>Kelas</th>
+          <th>No telp</th>
           <th>Email</th>
-          <th>Program Studi</th>
           <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($data as $datas): ?>
           <tr>
-            <td>{{$datas->nim}}</td>
+            <td>{{$datas->nid}}</td>
             <td>{{$datas->nama}}</td>
             <td>{{$datas->jk}}</td>
-            <td>{{$datas->kelas}}</td>
+            <td>{{$datas->no_tlp}}</td>
             <td>{{$datas->email}}</td>
-            <td>{{getStudi($datas->progstu_id)}}</td>
             <td>
               <div class="text-center">
-                <a title="Read More" href="{{route('mahasiswa.read',$datas->id)}}" class="btn btn-info btn-flat btn-md"><i class="fa fa-info"></i></a>
+                <a title="Read More" href="{{route('dosen.read',$datas->id)}}" class="btn btn-info btn-flat btn-md"><i class="fa fa-info"></i></a>
 
-                <a title="Edit" href="{{route('mahasiswa.edit',$datas->id)}}" class="btn btn-primary btn-flat btn-md"><i class="fa fa-edit"></i></a>
-                <?php array_push($entity, $datas->id) ?>
+                <a title="Edit" href="{{route('dosen.edit',$datas->id)}}" class="btn btn-primary btn-flat btn-md"><i class="fa fa-edit"></i></a>
               </div>
 
             </td>

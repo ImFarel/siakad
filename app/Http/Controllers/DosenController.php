@@ -6,81 +6,71 @@ use App\Dosen;
 use App\Progstu;
 use App\Berkul;
 use App\Ruangan;
+use App\Matkul;
+
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $data = Dosen::all();
+        return view('dosen.index',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $nid = Dosen::orderBy('created_at','desc')->first();
+        $last = $nid->nid;
+				$nid = $last + 1;
+        return view('dosen.create', compact('nid'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $process = Dosen::create($request->except('_token'));
+        if ($process) {
+          flash('Dosen Berhasil di Tambah !')->success()->important();
+        }else {
+          flash('Dosen Gagal di Tambah !')->error()->important();
+          return redirect()->back();
+        }
+        return redirect()->route('dosen.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $find = Dosen::findOrFail($id);
+        // dd($find);
+        return view('dosen.edit')->with('data', $find);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+          'tanggal_lahir' => 'required',
+          'tempat_lahir' => 'required'
+        ]);
+
+        $dosen = Dosen::findOrFail($id);
+        $dosen->fill($request->except('_token'));
+        $dosen->update();
+        // dd($dosen);
+        if ($dosen) {
+          flash()->success('Dosen di Update !')->important();
+          return redirect()->route('dosen.index');
+        }else {
+          flash()->error('Dosen gagal di Update !')->important();
+          return redirect()->back();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

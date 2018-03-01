@@ -1,6 +1,6 @@
 @extends('layouts.template-dashboard')
-@section('title', 'Formulir Pendaftaran Mahasiswa')
-@section('page-title', 'Mahasiswa')
+@section('title', 'Tambah Dosen')
+@section('page-title', 'Dosen')
 @section('css')
 <!-- bootstrap datepicker -->
 <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
@@ -21,9 +21,9 @@
       <h3 class="box-title">Data Diri</h3>
     </div>
     <!-- /.box-header -->
-    {!! Form::open(['route'=>['mahasiswa.store'],'role' =>'form','enctype'=>'multipart/form-data' ]) !!}
-
-    @include('mahasiswa._form')
+    {!! Form::open(['route'=>['dosen.store'],'role' =>'form','enctype'=>'multipart/form-data' ]) !!}
+    <input type="hidden" name="nid" value="{{$nid}}">
+    @include('dosen._form')
       <div class="box-footer text-right">
         <button type="submit" class="btn btn-flat btn-primary"> Simpan Data</button>
       </div>

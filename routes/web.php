@@ -29,8 +29,8 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
 
   //dosen
   Route::get('/lecturers','DosenController@index')->name('dosen.index');
-  Route::get('/lecturers/register','DosenController@create')->name('dosen.create');
-  Route::post('/lecturers/register/process','DosenController@store')->name('dosen.store');
+  Route::get('/lecturers/add','DosenController@create')->name('dosen.create');
+  Route::post('/lecturers/add/process','DosenController@store')->name('dosen.store');
   Route::get('/lecturers/read/{id}','DosenController@read')->name('dosen.read');
   Route::get('/lecturers/edit/{id}','DosenController@edit')->name('dosen.edit');
   Route::put('/lecturers/update/{id}','DosenController@update')->name('dosen.update');

@@ -8,10 +8,13 @@ class Dosen extends Model
 {
     protected $table = 'dosen';
     protected $fillable = [
-      'nip',
+      'nid',
       'nama',
       'alamat',
       'no_tlp',
       'email',
+      'jk',
+      'tempat_lahir',
+      'tanggal_lahir'
     ];
 }
