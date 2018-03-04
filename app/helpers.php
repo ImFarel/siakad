@@ -15,3 +15,13 @@ function getStudi($id)
     return '-';
   }
 }
+
+function jenjang($id)
+{
+  $object = DB::table('jenjang')->where('id', $id)->first();
+  if ($object) {
+    return $object->jenjang;
+  }else {
+     return '-';
+  }
+}

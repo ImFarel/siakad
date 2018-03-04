@@ -87,6 +87,51 @@
           </ul>
         </li>
 
+        <li class="header">&mdash;Kurikulum Modules</li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Program Studi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('progstu.index')}}">List Program Studi</a></li>
+            <li><a href="{{route('progstu.create')}}">Tambah Program Studi</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Mata Kuliah</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
+            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Tahun Ajaran</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
+            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Program Studi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
+            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+          </ul>
+        </li>
         @can('view_users')
         <li class="header">&mdash;User Management</li>
         <li class="treeview">

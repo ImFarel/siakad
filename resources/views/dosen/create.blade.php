@@ -26,6 +26,7 @@
     @include('dosen._form')
       <div class="box-footer text-right">
         <button type="submit" class="btn btn-flat btn-primary"> Simpan Data</button>
+        <a href="{{route('dosen.index')}}" class="btn btn-flat btn-danger"> Batal</a>
       </div>
     {!! Form::close() !!}
   </div>

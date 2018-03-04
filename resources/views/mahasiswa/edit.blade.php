@@ -39,6 +39,7 @@
     </div>
       <div class="box-footer text-right">
         <button type="submit" class="btn btn-flat btn-primary"> Update Data</button>
+        <a href="{{route('mahasiswa.index')}}" class="btn btn-flat btn-danger"> Batal</a>
       </div>
     {!! Form::close() !!}
   </div>
