@@ -53,13 +53,12 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::delete('/matkuls/delete/{id}','MatkulController@destroy')->name('matkul.delete');
 
   //tahun Ajaran Settings
-  
-  Route::get('/academics','MatkulController@index')->name('matkul.index');
-  Route::get('/academics/add','MatkulController@create')->name('matkul.create');
-  Route::post('/academics/add/process','MatkulController@store')->name('matkul.store');
-  Route::get('/academics/edit/{id}','MatkulController@edit')->name('matkul.edit');
-  Route::put('/academics/update/{id}','MatkulController@update')->name('matkul.update');
-  Route::delete('/academics/delete/{id}','MatkulController@destroy')->name('matkul.delete');
+  Route::get('/years','TahunAjaranController@index')->name('tahun.index');
+  Route::get('/years/add','TahunAjaranController@create')->name('tahun.create');
+  Route::post('/years/add/process','TahunAjaranController@store')->name('tahun.store');
+  Route::get('/years/edit/{id}','TahunAjaranController@edit')->name('tahun.edit');
+  Route::put('/years/update/{id}','TahunAjaranController@update')->name('tahun.update');
+  Route::delete('/years/delete/{id}','TahunAjaranController@destroy')->name('tahun.delete');
 
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');
