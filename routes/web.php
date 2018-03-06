@@ -53,6 +53,7 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::delete('/matkuls/delete/{id}','MatkulController@destroy')->name('matkul.delete');
 
   //tahun Ajaran Settings
+  
   Route::get('/academics','MatkulController@index')->name('matkul.index');
   Route::get('/academics/add','MatkulController@create')->name('matkul.create');
   Route::post('/academics/add/process','MatkulController@store')->name('matkul.store');
