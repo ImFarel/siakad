@@ -52,6 +52,14 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::put('/matkuls/update/{id}','MatkulController@update')->name('matkul.update');
   Route::delete('/matkuls/delete/{id}','MatkulController@destroy')->name('matkul.delete');
 
+  //tahun Ajaran Settings
+  Route::get('/academics','MatkulController@index')->name('matkul.index');
+  Route::get('/academics/add','MatkulController@create')->name('matkul.create');
+  Route::post('/academics/add/process','MatkulController@store')->name('matkul.store');
+  Route::get('/academics/edit/{id}','MatkulController@edit')->name('matkul.edit');
+  Route::put('/academics/update/{id}','MatkulController@update')->name('matkul.update');
+  Route::delete('/academics/delete/{id}','MatkulController@destroy')->name('matkul.delete');
+
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');
   Route::get('/users/add', 'UserController@add')->name('users.add');

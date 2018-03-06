@@ -15,8 +15,10 @@ trait Authorizable
     private $abilities = [
         'index'            => 'view',
         'view'             => 'view',
-        'add'              => 'add',
+        'add'              => 'add', 
+        'store'            => 'add',
         'edit'             => 'edit',
+        'update'           => 'edit',
         'editprocess'      => 'edit',
         'addprocess'       => 'add',
         'delete'           => 'delete',
