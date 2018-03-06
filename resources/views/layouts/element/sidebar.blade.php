@@ -106,8 +106,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
-            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+            <li><a href="{{route('matkul.index')}}">List Matakuliah</a></li>
+            <li><a href="{{route('matkul.create')}}">Tambah Matakuliah</a></li>
           </ul>
         </li>
         <li class="treeview">

@@ -15,13 +15,21 @@ function getStudi($id)
     return '-';
   }
 }
-
+function getDosen($id)
+{
+  $object = DB::table('dosen')->where('id', $id)->first();
+  if ($object) {
+    return $object->nama;
+  }else {
+    return '-';
+  }
+}
 function jenjang($id)
 {
   $object = DB::table('jenjang')->where('id', $id)->first();
   if ($object) {
     return $object->jenjang;
   }else {
-     return '-';
+    return '-';
   }
 }

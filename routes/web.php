@@ -36,13 +36,21 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::put('/lecturers/update/{id}','DosenController@update')->name('dosen.update');
   Route::delete('/lecturers/delete/{id}','DosenController@destroy')->name('dosen.delete');
 
-  //dosen
+  //program studi
   Route::get('/programs','ProgstuController@index')->name('progstu.index');
   Route::get('/programs/add','ProgstuController@create')->name('progstu.create');
   Route::post('/programs/add/process','ProgstuController@store')->name('progstu.store');
   Route::get('/programs/edit/{id}','ProgstuController@edit')->name('progstu.edit');
   Route::put('/programs/update/{id}','ProgstuController@update')->name('progstu.update');
   Route::delete('/programs/delete/{id}','ProgstuController@destroy')->name('progstu.delete');
+
+  //matkul
+  Route::get('/matkuls','MatkulController@index')->name('matkul.index');
+  Route::get('/matkuls/add','MatkulController@create')->name('matkul.create');
+  Route::post('/matkuls/add/process','MatkulController@store')->name('matkul.store');
+  Route::get('/matkuls/edit/{id}','MatkulController@edit')->name('matkul.edit');
+  Route::put('/matkuls/update/{id}','MatkulController@update')->name('matkul.update');
+  Route::delete('/matkuls/delete/{id}','MatkulController@destroy')->name('matkul.delete');
 
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');
