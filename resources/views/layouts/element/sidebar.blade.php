@@ -73,6 +73,17 @@
             <li><a href="{{route('mahasiswa.create')}}">Pendaftaran Mahasiswa</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Absen Mahasiswa</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('mahasiswa.index')}}">List Mahasiswa</a></li>
+            <li><a href="{{route('mahasiswa.create')}}">Pendaftaran Mahasiswa</a></li>
+          </ul>
+        </li>
 
         <li class="header">&mdash;Dosen Modules</li>
         <li class="treeview">
@@ -117,8 +128,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
-            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+            <li><a href="{{route('tahun.index')}}">List Tahun Ajaran</a></li>
+            <li><a href="{{route('tahun.create')}}">Buat Tahun Ajaran</a></li>
           </ul>
         </li>
         <li class="treeview">

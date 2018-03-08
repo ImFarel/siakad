@@ -8,6 +8,12 @@ use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile; //optional
+
+/**
+ * Controller Module Mahasiswa
+ * RouteServiceProvider
+ *
+ */
 class MahasiswaController extends Controller
 {
     public function index()

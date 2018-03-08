@@ -18,23 +18,40 @@ Route::get('/403', 'HomeController@unauthorized')->name('403');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
-  //mahasiswa
+  /*
+  | M M M M     M M M M    M M M M M M M M  M M M M M M      M M       M M M  M M M            M M M M M M M M M M
+  | M M  M M   M M  M M    M M       M M M  M M       M M    M M       M M M  M M M            M M M M M M M M M M
+  | M M   M M M M   M M    M M       M M M  M M       M M    M M       M M M  M M M            M M M
+  | M M    M M M    M M    M M       M M M  M M       M M M  M M       M M M  M M M            M M M M M M M M M M
+  | M M             M M    M M       M M M  M M       M M M  M M       M M M  M M M M M M M M  M M M
+  | M M             M M    M M M M M M M M  M M M M M M M M  M M M M M M M M  M M M M M M M M  M M M M M M M M M M
+  |
+  | M M M M     M M M M    M MM       MM M  M M M M M M M M
+  | M M  M M   M M  M M    M MM       MM M  M M M M M M M M
+  | M M   M M M M   M M    M MM MM MM MM M  M M M
+  | M M    M M M    M M    M MM MM MM MM M  M M M M M M M M
+  | M M             M M    M MM       MM M          M M M M
+  | M M             M M    M MM       MM M  M M M M M M M M
+  |
+  */
   Route::get('/students','MahasiswaController@index')->name('mahasiswa.index');
   Route::get('/students/register','MahasiswaController@create')->name('mahasiswa.create');
   Route::post('/students/register/process','MahasiswaController@store')->name('mahasiswa.store');
-  Route::get('/students/read/{id}','MahasiswaController@read')->name('mahasiswa.read');
   Route::get('/students/edit/{id}','MahasiswaController@edit')->name('mahasiswa.edit');
   Route::put('/students/update/{id}','MahasiswaController@update')->name('mahasiswa.update');
-  Route::delete('/students/delete/{id}','MahasiswaController@destroy')->name('mahasiswa.delete');
+
+  Route::get('/students/attendances','MahasiswaController@index')->name('mahasiswa.index');
+  Route::get('/students/attendances/','MahasiswaController@create')->name('mahasiswa.create');
+  Route::post('/students/attendances/process','MahasiswaController@store')->name('mahasiswa.store');
+  Route::get('/students/attendances/edit/{id}','MahasiswaController@edit')->name('mahasiswa.edit');
+  Route::put('/students/attendances/update/{id}','MahasiswaController@update')->name('mahasiswa.update');
 
   //dosen
   Route::get('/lecturers','DosenController@index')->name('dosen.index');
   Route::get('/lecturers/add','DosenController@create')->name('dosen.create');
   Route::post('/lecturers/add/process','DosenController@store')->name('dosen.store');
-  Route::get('/lecturers/read/{id}','DosenController@read')->name('dosen.read');
   Route::get('/lecturers/edit/{id}','DosenController@edit')->name('dosen.edit');
   Route::put('/lecturers/update/{id}','DosenController@update')->name('dosen.update');
-  Route::delete('/lecturers/delete/{id}','DosenController@destroy')->name('dosen.delete');
 
   //program studi
   Route::get('/programs','ProgstuController@index')->name('progstu.index');
@@ -42,7 +59,6 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::post('/programs/add/process','ProgstuController@store')->name('progstu.store');
   Route::get('/programs/edit/{id}','ProgstuController@edit')->name('progstu.edit');
   Route::put('/programs/update/{id}','ProgstuController@update')->name('progstu.update');
-  Route::delete('/programs/delete/{id}','ProgstuController@destroy')->name('progstu.delete');
 
   //matkul
   Route::get('/matkuls','MatkulController@index')->name('matkul.index');
@@ -50,7 +66,6 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::post('/matkuls/add/process','MatkulController@store')->name('matkul.store');
   Route::get('/matkuls/edit/{id}','MatkulController@edit')->name('matkul.edit');
   Route::put('/matkuls/update/{id}','MatkulController@update')->name('matkul.update');
-  Route::delete('/matkuls/delete/{id}','MatkulController@destroy')->name('matkul.delete');
 
   //tahun Ajaran Settings
   Route::get('/years','TahunAjaranController@index')->name('tahun.index');
@@ -58,7 +73,7 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::post('/years/add/process','TahunAjaranController@store')->name('tahun.store');
   Route::get('/years/edit/{id}','TahunAjaranController@edit')->name('tahun.edit');
   Route::put('/years/update/{id}','TahunAjaranController@update')->name('tahun.update');
-  Route::delete('/years/delete/{id}','TahunAjaranController@destroy')->name('tahun.delete');
+
 
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');
