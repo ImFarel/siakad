@@ -80,6 +80,7 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::post('/krs/addhead/process','KartuRencanaStudiController@store_head')->name('krs.store_head');
   Route::get('/krs/adddetail/{id}','KartuRencanaStudiController@create_detail')->name('krs.create_detail');
   Route::post('/krs/adddetail/process/{id}','KartuRencanaStudiController@store_detail')->name('krs.store_detail');
+  Route::get('/krs/read/{id}','KartuRencanaStudiController@read')->name('krs.read');
   Route::get('/krs/edit/{id}','KartuRencanaStudiController@edit')->name('krs.edit');
   Route::put('/krs/update/{id}','KartuRencanaStudiController@update')->name('krs.update');
   Route::delete('/krs/delete/{id}','KartuRencanaStudiController@delete')->name('krs.delete');

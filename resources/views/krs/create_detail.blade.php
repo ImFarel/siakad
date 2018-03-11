@@ -33,7 +33,6 @@
           <table id="example1" class="table table-striped no-margin">
             <thead>
               <tr>
-                <th>No</th>
                 <th>Kode Matkul</th>
                 <th>Nama Matkul</th>
 
@@ -54,7 +53,7 @@
                 <td>{{$datas->sks}}</td>
                 <td>{{getDosen($datas->dosen_id)}}</td>
                 <td>
-                  <button class="btn choose btn-info btn-xs selectdata-{{$no}}" data-row="row-{{$no}}" data-kd_matkul="{{$datas->kd_matkul}}" data-nama="{{$datas->nama}}" data-sks="{{$datas->sks}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
+                  <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$no}}" data-kd_matkul="{{$datas->kd_matkul}}" data-nama="{{$datas->nama}}" data-sks="{{$datas->sks}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
                 </td>
               </tr>
               <?php $no++ ?>
@@ -180,16 +179,16 @@
 @section('script')
 <script type="text/javascript">
 $(function () {
-  var count = 0;
 
-  $(".selectdata-"+count).click(function(e){
+  var count = 0;
+  $(".selectdata").click(function(e){
     e.preventDefault();
     var kd_matkul = $(this).data('kd_matkul'),
         nama = $(this).data('nama'),
         sks = $(this).data('sks'),
         row = $(this).data('row');
-    console.log("#selectdata-"+count);
-    console.log(row);
+    // console.log("#selectdata-"+count);
+    // console.log(row);
     $('#kode-matkul').val(kd_matkul);
     $('#nama-matkul').val(nama);
     $('#sks-matkul').val(sks);
@@ -227,7 +226,7 @@ $(function () {
       $(".remove_row").click(function (e) {
         if (e.type == 'click') {
           var row = $(this).data('rows');
-          console.log(row);
+          // console.log(row);
 
           // console.log($("#"+valRowId).val());
           $('#'+row).fadeIn();

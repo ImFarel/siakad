@@ -40,7 +40,7 @@
           <tr>
             <td>{{$no++}}</td>
             <td>{{$datas->nama_paket}}</td>
-            <td>{{$datas->progstu_id}}</td>
+            <td>{{getStudi($datas->progstu_id)}}</td>
             <td>{{$datas->semester_id}}</td>
 
             <td>

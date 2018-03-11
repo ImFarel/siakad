@@ -46,10 +46,31 @@ class KartuRencanaStudiController extends Controller
 
     public function store_detail(Request $request , $id)
     {
-      dd($request);
+      // dd($request->all());
+      $find = PaketHead::find($id);
+      $data = [];
+      // dd($request->input('detail'));
+      foreach ($request->input('detail') as $key => $value) {
+        $data[] = new PaketDetail([
+          'sks' => $value['sks'],
+          'paket_head_id' => $id,
+          'kd_matkul' => $value['kd_matkul'],
+        ]);
+      }
+      // dd($data);
+      $do = $find->PaketDetail()->saveMany($data);
+      flash()->success('Paket Berhasil Di Buat !')->important();
       return redirect()->route('krs.index');
     }
 
+    public function read($id)
+    {
+      return view('krs.read');
+    }
+    public function edit($id)
+    {
+      return view('krs.edit');
+    }
     public function delete($id)
     {
       $find = Matkul::delete($id);
