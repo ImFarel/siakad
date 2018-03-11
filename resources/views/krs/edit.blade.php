@@ -1,6 +1,6 @@
 @extends('layouts.template-dashboard')
-@section('title', 'Edit Tahun Ajaran Form')
-@section('page-title', 'Tahun Ajaran Form')
+@section('title', 'Edit Kartu Rencana Studi Form')
+@section('page-title', 'Kartu Rencana Studi Form')
 @section('css')
 <!-- bootstrap datepicker -->
 <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
@@ -17,67 +17,236 @@
 <div class="flash-msg">
   @include('flash::message')
 </div>
-<!-- right column -->
-<div class="col-md-9">
-  <div class="box box-info">
-    <div class="box-header">
-      <h3 class="box-title">Tahun Ajaran Form</h3>
-    </div>
-    <!-- /.box-header -->
-    {!! Form::model($data, ['method' => 'PUT', 'route' => ['tahun.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
-    <div class="box-body">
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-grup">
-            <label>Nama Paket :</label> <label class="required"> *</label>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user"></i>
-              </div>
-              {!! Form::text('nama_paket', null, ['class' => 'form-control', 'placeholder' => 'Paket TI 1','required']) !!}
-            </div>
+<!-- Modal Matkul -->
+<div class="modal fade" id="myModal" role="dialog" aria>
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-sm-3">
+            <h4 class="modal-title" style="padding: 7px">List Matakuliah</h4>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-grup">
-            <label>Semester :</label> <label class="required"> *</label>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user"></i>
-              </div>
-              {!! Form::select('semester_id', $semester,null, ['class' => 'form-control','required']) !!}
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-grup">
-            <label>Program Studi :</label> <label class="required"> *</label>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user"></i>
-              </div>
-              {!! Form::select('progstu_id',$progstu, null, ['class' => 'form-control','required']) !!}
-            </div>
-          </div>
-        </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table id="example1" class="table table-striped no-margin">
+            <thead>
+              <tr>
+                <th>Kode Matkul</th>
+                <th>Nama Matkul</th>
 
+                <th>SKS</th>
+                <th>Dosen</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <?php $no=0; ?>
+              <?php for ($i=0; $i < $count; $i++) : ?>
+                <?php foreach ($matkul as $key => $value): ?>
+                  <?php $existed = $exist[$i]->kd_matkul;?>
+                  <?php if ($value['kd_matkul'] == $existed): ?>
+                    <tr id="row-{{$no}}" style="display: none;">
+                      <td>{{$value['kd_matkul']}}</td>
+                      <td>{{$value['nama']}}</td>
+                      true
+                      <td>{{$value['sks']}}</td>
+                      <td>{{getDosen($value['dosen_id'])}}</td>
+                      <td>
+                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$no}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
+                      </td>
+                    </tr>
+                  <?php else: ?>
+                    <tr id="row-{{$no}}">
+                      <td>{{$value['kd_matkul']}}</td>
+                      <td>{{$value['nama']}}</td>
+                      false
+                      <td>{{$value['sks']}}</td>
+                      <td>{{getDosen($value['dosen_id'])}}</td>
+                      <td>
+                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$no}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
+                      </td>
+                    </tr>
+                    <?php $no++ ?>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              <?php endfor; ?>
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>
-    <div class="box-footer text-right">
-      <button type="submit" class="btn btn-flat btn-primary"> Lanjut </button>
-      <a href="{{route('krs.index')}}" class="btn btn-flat btn-danger"> Batal</a>
-    </div>
-    {!! Form::close() !!}
   </div>
-  <!-- /.box -->
 </div>
-<!--/.col (right) -->
+<!-- akhir modal -->
+
+<div class="row">
+
+  <!-- left column -->
+  <div class="col-md-4">
+    <div class="box box-info">
+      <div class="box-header">
+        <h3 class="box-title">Matakuliah</h3>
+      </div>
+      <!-- /.box-header -->
+
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-grup">
+              <label>Nama Matakuliah :</label> <label class="required"> *</label>
+              <div class="input-group">
+                {!! Form::text('nama', null, ['class' => 'form-control','id'=>'nama-matkul','required','readonly']) !!}
+
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pilih Matakuliah</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-grup">
+              <label>Kode Matkul :</label> <label class="required"> *</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                {!! Form::text('kd_matkul', null, ['class' => 'form-control','id'=>'kode-matkul','required','readonly']) !!}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-grup">
+              <label>SKS :</label> <label class="required"> *</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                {!! Form::text('sks', null, ['class' => 'form-control','id'=>'sks-matkul','required','readonly']) !!}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="box-footer text-right">
+        <button type="submit" class="btn btn-flat btn-primary add-row"> Tambah</button>
+      </div>
+
+    </div>
+    <!-- /.box -->
+  </div>
+  <!--/.col (left) -->
+
+  <!-- right top column -->
+  <div class="col-md-8">
+    <div class="box box-info">
+      <div class="box-header">
+        <h3 class="box-title">Kartu Rencana Studi Form</h3>
+      </div>
+      <!-- /.box-header -->
+      {!! Form::model($data, ['method' => 'PUT', 'route' => ['tahun.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
+      <div class="box-body">
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-grup">
+              <label>Nama Paket :</label> <label class="required"> *</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                {!! Form::text('nama_paket', null, ['class' => 'form-control', 'placeholder' => 'Paket TI 1','required']) !!}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-grup">
+              <label>Semester :</label> <label class="required"> *</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                {!! Form::select('semester_id', $semester,null, ['class' => 'form-control','required']) !!}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-grup">
+              <label>Program Studi :</label> <label class="required"> *</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </div>
+                {!! Form::select('progstu_id',$progstu, null, ['class' => 'form-control','required']) !!}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {!! Form::close() !!}
+    </div>
+    <!-- /.box -->
+  </div>
+  <!--/.col (right top) -->
+
+  <!-- right bottom column -->
+  <div class="col-md-8">
+    <div class="box box-info">
+      <div class="box-header">
+        <h3 class="box-title">Isi Kartu Rencana Studi Form</h3>
+      </div>
+      <!-- /.box-header -->
+      {!! Form::model($data, ['method' => 'PUT', 'route' => ['tahun.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
+      <div class="box-body">
+        <table class="table table-striped no-margin table-matkul" name="table-matkul">
+          <thead>
+            <tr>
+              <th>Kode Matakuliah</th>
+              <th>Nama Matakuliah</th>
+              <th>SKS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($detail as $value): ?>
+              <tr>
+                <td>{{$value->kd_matkul}}</td>
+                <td>{{getMatkul($value->kd_matkul)}}</td>
+                <td>{{$value->sks}}</td>
+                <td>
+                  <a title="Delete Row" data-rows="row-'+valRow+'" class="remove_row btn btn-danger btn-md" value="Delete Row"><i class="fa fa-times"></i></a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="box-footer text-right">
+        <button type="submit" class="btn btn-flat btn-primary"> Lanjut </button>
+        <a href="{{route('krs.index')}}" class="btn btn-flat btn-danger"> Batal</a>
+      </div>
+      {!! Form::close() !!}
+    </div>
+    <!-- /.box -->
+  </div>
+  <!--/.col (right bottom) -->
+</div>
 @endsection
 
 @section('script')

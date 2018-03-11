@@ -15,6 +15,13 @@ function getStudi($id)
     return '-';
   }
 }
+
+function getMatkul($kd)
+{
+  $params = DB::table('matkul')->where('kd_matkul', $kd)->first();
+
+  return ($params)? $params->nama : '';
+}
 function getDosen($id)
 {
   $object = DB::table('dosen')->where('id', $id)->first();

@@ -69,7 +69,17 @@ class KartuRencanaStudiController extends Controller
     }
     public function edit($id)
     {
-      return view('krs.edit');
+      $data = PaketHead::find($id);
+      $detail = PaketDetail::where('paket_head_id', $id)->get();
+      $exist = PaketDetail::where('paket_head_id', $id)->select('kd_matkul')->get();
+      // $foo = $exist[0]['kd_matkul'];
+      // dd($foo);
+      $count = count($exist);
+      $semester = DB::table('semester')->get()->pluck('semester','id');
+      $progstu = Progstu::orderBy('id','ASC')->pluck('nama','id');
+      $matkul = Matkul::where('progstu_id', $data->progstu_id)->where('semester_id', $data->semester_id)->get();
+      // dd($matkul);
+      return view('krs.edit',compact('data','detail','semester','progstu','matkul','exist','count'));
     }
     public function delete($id)
     {
