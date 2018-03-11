@@ -12,7 +12,7 @@ class Matkul extends Model
       'progstu_id',
       'kode',
       'nama',
-      'semester',
+      'semester_id',
       'sks',
       'kategori',
       'dosen_id'

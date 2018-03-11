@@ -74,6 +74,15 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::get('/years/edit/{id}','TahunAjaranController@edit')->name('tahun.edit');
   Route::put('/years/update/{id}','TahunAjaranController@update')->name('tahun.update');
 
+  //Ka Er Es (Kartu Rencana Studi)
+  Route::get('/krs','KartuRencanaStudiController@index')->name('krs.index');
+  Route::get('/krs/addhead','KartuRencanaStudiController@create_head')->name('krs.create_head');
+  Route::post('/krs/addhead/process','KartuRencanaStudiController@store_head')->name('krs.store_head');
+  Route::get('/krs/adddetail/{id}','KartuRencanaStudiController@create_detail')->name('krs.create_detail');
+  Route::post('/krs/adddetail/process/{id}','KartuRencanaStudiController@store_detail')->name('krs.store_detail');
+  Route::get('/krs/edit/{id}','KartuRencanaStudiController@edit')->name('krs.edit');
+  Route::put('/krs/update/{id}','KartuRencanaStudiController@update')->name('krs.update');
+  Route::delete('/krs/delete/{id}','KartuRencanaStudiController@delete')->name('krs.delete');
 
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');

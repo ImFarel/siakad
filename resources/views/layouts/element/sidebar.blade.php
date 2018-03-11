@@ -132,17 +132,19 @@
             <li><a href="{{route('tahun.create')}}">Buat Tahun Ajaran</a></li>
           </ul>
         </li>
+
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Program Studi</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Kartu Rencana Studi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('dosen.index')}}">List Dosen</a></li>
-            <li><a href="{{route('dosen.create')}}">Tambah Dosen</a></li>
+            <li><a href="{{route('krs.index')}}">List KRS</a></li>
+            <li><a href="{{route('krs.create_head')}}">Tambah KRS Baru</a></li>
           </ul>
         </li>
+
         @can('view_users')
         <li class="header">&mdash;User Management</li>
         <li class="treeview">
