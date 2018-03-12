@@ -45,10 +45,7 @@
 
             <td>
               <div class="text-center">
-
                 <a title="Edit" href="{{route('krs.edit',$datas->id)}}" class="btn btn-primary btn-flat btn-md"><i class="fa fa-edit"></i></a>
-                <a title="Edit" href="{{route('krs.delete',$datas->id)}}" class="btn btn-danger btn-flat btn-md"><i class="fa fa-trash"></i></a>
-
               </div>
 
             </td>
