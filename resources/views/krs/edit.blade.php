@@ -2,9 +2,6 @@
 @section('title', 'Edit Kartu Rencana Studi Form')
 @section('page-title', 'Kartu Rencana Studi Form')
 @section('css')
-<!-- bootstrap datepicker -->
-<link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/timepicker/bootstrap-timepicker.min.css')}}">
 <style media="screen">
   .required{
      color:red;
@@ -47,35 +44,45 @@
 
             <tbody>
               <?php $no=0; ?>
-              <?php for ($i=0; $i < $count; $i++) : ?>
+
                 <?php foreach ($matkul as $key => $value): ?>
-                  <?php $existed = $exist[$i]->kd_matkul;?>
-                  <?php if ($value['kd_matkul'] == $existed): ?>
-                    <tr id="row-{{$no}}" style="display: none;">
+                  <?php foreach ($exist as $keys => $values): ?>
+
+                    <?php if ($value['kd_matkul'] == $values['kd_matkul']): ?>
+                      <?php $stat = true; break;?>
+                    <?php else: ?>
+                      <?php $stat = false;?>
+                    <?php endif; ?>
+
+                  <?php endforeach; ?>
+
+                  <?php if ($stat): ?>
+                    <tr id="row-{{$value['kd_matkul']}}" style="display: none;">
                       <td>{{$value['kd_matkul']}}</td>
                       <td>{{$value['nama']}}</td>
                       true
                       <td>{{$value['sks']}}</td>
                       <td>{{getDosen($value['dosen_id'])}}</td>
                       <td>
-                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$no}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
+                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$value['kd_matkul']}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
                       </td>
                     </tr>
+
                   <?php else: ?>
-                    <tr id="row-{{$no}}">
+                    <tr id="row-{{$value['kd_matkul']}}">
                       <td>{{$value['kd_matkul']}}</td>
                       <td>{{$value['nama']}}</td>
                       false
                       <td>{{$value['sks']}}</td>
                       <td>{{getDosen($value['dosen_id'])}}</td>
                       <td>
-                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$no}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
+                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$value['kd_matkul']}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
                       </td>
                     </tr>
-                    <?php $no++ ?>
                   <?php endif; ?>
+                  <?php $no++ ?>
                 <?php endforeach; ?>
-              <?php endfor; ?>
+
             </tbody>
           </table>
         </div>
@@ -103,6 +110,7 @@
               <label>Nama Matakuliah :</label> <label class="required"> *</label>
               <div class="input-group">
                 {!! Form::text('nama', null, ['class' => 'form-control','id'=>'nama-matkul','required','readonly']) !!}
+                {!! Form::hidden('row', null, ['class' => 'form-control','id'=>'row','required']) !!}
 
                 <div class="input-group-btn">
                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pilih Matakuliah</button>
@@ -143,6 +151,7 @@
       </div>
       <div class="box-footer text-right">
         <button type="submit" class="btn btn-flat btn-primary add-row"> Tambah</button>
+        <button type="submit" class="cancel btn btn-flat btn-danger"> Batal</button>
       </div>
 
     </div>
@@ -157,7 +166,7 @@
         <h3 class="box-title">Kartu Rencana Studi Form</h3>
       </div>
       <!-- /.box-header -->
-      {!! Form::model($data, ['method' => 'PUT', 'route' => ['tahun.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
+      {!! Form::model($data, ['method' => 'PUT', 'route' => ['krs.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
       <div class="box-body">
 
         <div class="row">
@@ -199,20 +208,20 @@
 
       </div>
 
-      {!! Form::close() !!}
+
     </div>
     <!-- /.box -->
   </div>
   <!--/.col (right top) -->
 
-  <!-- right bottom column -->
+  <!-- right bottom column Table -->
   <div class="col-md-8">
     <div class="box box-info">
       <div class="box-header">
         <h3 class="box-title">Isi Kartu Rencana Studi Form</h3>
       </div>
       <!-- /.box-header -->
-      {!! Form::model($data, ['method' => 'PUT', 'route' => ['tahun.update',  $data->id ], 'class' => 'form-horizontal' ]) !!}
+
       <div class="box-body">
         <table class="table table-striped no-margin table-matkul" name="table-matkul">
           <thead>
@@ -223,35 +232,36 @@
             </tr>
           </thead>
           <tbody>
+            <?php $no = 0; ?>
             <?php foreach ($detail as $value): ?>
               <tr>
-                <td>{{$value->kd_matkul}}</td>
-                <td>{{getMatkul($value->kd_matkul)}}</td>
-                <td>{{$value->sks}}</td>
+                {{$no}}
+                <td><input type="text" placeholder="type here" id="kd_matkul[{{$no}}]" name="detail[{{$no}}][kd_matkul]" class="form-control input-sm" value="{{$value->kd_matkul}}" readonly></td>
+                <td><input type="text" placeholder="type here" id="nama[{{$no}}]" name="detail[{{$no}}][nama]" class="form-control input-sm" value="{{getMatkul($value->kd_matkul)}}" readonly></td>
+                <td><input type="text" placeholder="type here" id="sks[{{$no}}]" name="detail[{{$no}}][sks]" class="form-control input-sm" value="{{$value->sks}}" readonly></td>
                 <td>
-                  <a title="Delete Row" data-rows="row-'+valRow+'" class="remove_row btn btn-danger btn-md" value="Delete Row"><i class="fa fa-times"></i></a>
+                  <a onclick="return confirm('Anda yakin ingin hapus baris ini ?')" href="{{route('krs.deletedetail',[$value->id])}}" title="Delete Row" type="submit" data-rows="row-{{$value->kd_matkul}}" class="remove_row btn btn-danger btn-md" value="Delete Row"><i class="fa fa-times"></i></a>
                 </td>
               </tr>
+              <?php $no++ ?>
             <?php endforeach; ?>
 
           </tbody>
         </table>
       </div>
       <div class="box-footer text-right">
-        <button type="submit" class="btn btn-flat btn-primary"> Lanjut </button>
+        <button type="submit" class="btn btn-flat btn-primary"> Simpan </button>
         <a href="{{route('krs.index')}}" class="btn btn-flat btn-danger"> Batal</a>
       </div>
       {!! Form::close() !!}
     </div>
     <!-- /.box -->
   </div>
-  <!--/.col (right bottom) -->
+  <!--/.col (right bottom) Table -->
 </div>
 @endsection
 
 @section('script')
-<!-- bootstrap datepicker -->
-<script src="{{asset('admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <script type="text/javascript">
 $(function () {
 
@@ -272,6 +282,20 @@ $(function () {
     count += 1;
   })
 
+  $(".cancel").click(function (e) {
+    e.preventDefault();
+
+    var kd = $('#kode-matkul').val(),row = 'row-'+kd;
+    console.log(row);
+
+    // console.log($("#"+valRowId).val());
+
+    $('#kode-matkul').val('');
+    $('#nama-matkul').val('');
+    $('#sks-matkul').val('');
+    $('#'+row).fadeIn();
+  })
+
   var counts = 0;
   $('.add-row').click(function(e){
     e.preventDefault();
@@ -285,30 +309,29 @@ $(function () {
 
       $('.table-matkul').append(
         '<tr>'
-        +'<td> <input type="text" placeholder="type here" id="kd_matkul['+counts+']" name="detail['+counts+'][kd_matkul]" class="form-control input-sm" value="'+valkd_matkul+'" readonly> </td>'
-        +'<td> <input type="text" placeholder="type here" id="nama['+counts+']" name="detail['+counts+'][nama]" class="form-control input-sm" value="'+valNama+'" readonly> </td>'
-        +'<td> <input type="text" placeholder="type here" id="sks['+counts+']" name="detail['+counts+'][sks]" class="form-control input-sm" value="'+valSks+'" readonly> </td>'
+        +'<td> <input type="text" placeholder="type here" id="kd_matkul['+counts+']" name="detailnew['+counts+'][kd_matkul]" class="form-control input-sm" value="'+valkd_matkul+'" readonly> </td>'
+        +'<td> <input type="text" placeholder="type here" id="nama['+counts+']" name="detailnew['+counts+'][nama]" class="form-control input-sm" value="'+valNama+'" readonly> </td>'
+        +'<td> <input type="text" placeholder="type here" id="sks['+counts+']" name="detailnew['+counts+'][sks]" class="form-control input-sm" value="'+valSks+'" readonly> </td>'
         +'<td>'
         +'<a title="Delete Row" data-rows="'+valRow+'" class="remove_row btn btn-danger btn-md" value="Delete Row"><i class="fa fa-times"></i></a>'
         // +'<input id="rows-at-' + counts + '" name="rows[]" value="row-'+ counts +'" type="hidden">'
         +'</td>'
         +'</tr>'
       );
-      // var valRowId     = $("#rows-at-"+counts).val();
-      // console.log(valRowId);
-      counts += 1;
 
+      counts += 1;
       $(".remove_row").click(function (e) {
+        e.preventDefault();
         if (e.type == 'click') {
           var row = $(this).data('rows');
-          // console.log(row);
+          console.log(row);
 
-          // console.log($("#"+valRowId).val());
           $('#'+row).fadeIn();
           // $(this).parents("tr").fadeOut();
           $(this).parents("tr").remove();
         }
       });
+
       $('#kode-matkul').val('');
       $('#nama-matkul').val('');
       $('#sks-matkul').val('');

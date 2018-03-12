@@ -84,6 +84,7 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::get('/krs/edit/{id}','KartuRencanaStudiController@edit')->name('krs.edit');
   Route::put('/krs/update/{id}','KartuRencanaStudiController@update')->name('krs.update');
   Route::delete('/krs/delete/{id}','KartuRencanaStudiController@delete')->name('krs.delete');
+  Route::get('/krs/edit/delete/{id}','KartuRencanaStudiController@deletedetail')->name('krs.deletedetail');
 
   //Users
   Route::get('/users', 'UserController@index')->name('users.index');

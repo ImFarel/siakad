@@ -72,8 +72,8 @@ class KartuRencanaStudiController extends Controller
       $data = PaketHead::find($id);
       $detail = PaketDetail::where('paket_head_id', $id)->get();
       $exist = PaketDetail::where('paket_head_id', $id)->select('kd_matkul')->get();
-      // $foo = $exist[0]['kd_matkul'];
-      // dd($foo);
+      // $foo = $exist;
+      // dd($foo->toArray());
       $count = count($exist);
       $semester = DB::table('semester')->get()->pluck('semester','id');
       $progstu = Progstu::orderBy('id','ASC')->pluck('nama','id');
@@ -81,8 +81,59 @@ class KartuRencanaStudiController extends Controller
       // dd($matkul);
       return view('krs.edit',compact('data','detail','semester','progstu','matkul','exist','count'));
     }
+
+    public function update(Request $request,$id)
+    {
+      // dd($request->all());
+      $data = PaketHead::find($id);
+      // dd($data->nama_paket);
+      if ($request->nama_paket != $data->nama_paket || $request->semester_id != $data->semester_id || $request->progstu_id != $data->progstu_id) {
+        $data->fill($request->except('_token'));
+        $data->save();
+      }
+      if ($data) { //executed
+        $reqDetailOld = $request->input('detail');
+        $detailData = PaketDetail::where('paket_head_id',$id)->get();
+        foreach ($detailData as $key => $value) {
+          if ($value['kd_matkul'] != $reqDetailOld[$key]['kd_matkul'] || $value['nama'] != $reqDetailOld[$key]['nama'] || $value['sks'] != $reqDetailOld[$key]['sks'] ) {
+            PaketDetail::where('id',$value['id'])->update([
+              'kd_matkul' => $reqDetailOld[$key]['kd_matkul'],
+
+              'sks'       => $reqDetailOld[$key]['sks'],
+            ]);
+          }
+        }
+        if (!empty($request->input('detailnew'))) {
+          $detailNew = array();
+          foreach ($request->input('detailnew') as $keys => $values) {
+            $detailNew[] = new PaketDetail([
+              'kd_matkul' => $values['kd_matkul'],
+              
+              'sks'       => $values['sks'],
+            ]);
+          }
+          $do = $data->PaketDetail()->saveMany($detailNew);
+        }
+        flash()->success('Data Berhasil Di Update !')->important();
+        return redirect()->route('krs.index');
+      }else {
+        flash()->error('Data Gagal Di Update !')->important();
+        return redirect()->back();
+      }
+    }
     public function delete($id)
     {
       $find = Matkul::delete($id);
+    }
+    public function deletedetail($id)
+    {
+      // $find = PaketDetail::where('paket_head_id',$id)->where('name', 'pattern');
+      $find = PaketDetail::find($id)->delete();
+      if ($find) {
+        flash()->success('Baris di hapus')->important();
+      }else {
+        flash()->error('Baris gagal di hapus')->important();
+      }
+      return redirect()->back();
     }
 }

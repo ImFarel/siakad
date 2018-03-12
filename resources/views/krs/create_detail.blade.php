@@ -227,8 +227,6 @@ $(function () {
         if (e.type == 'click') {
           var row = $(this).data('rows');
           // console.log(row);
-
-          // console.log($("#"+valRowId).val());
           $('#'+row).fadeIn();
           // $(this).parents("tr").fadeOut();
           $(this).parents("tr").remove();
