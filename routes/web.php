@@ -19,19 +19,19 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   /*
-  | M M M M     M M M M    M M M M M M M M  M M M M M M      M M       M M M  M M M            M M M M M M M M M M
-  | M M  M M   M M  M M    M M       M M M  M M       M M    M M       M M M  M M M            M M M M M M M M M M
-  | M M   M M M M   M M    M M       M M M  M M       M M    M M       M M M  M M M            M M M
-  | M M    M M M    M M    M M       M M M  M M       M M M  M M       M M M  M M M            M M M M M M M M M M
-  | M M             M M    M M       M M M  M M       M M M  M M       M M M  M M M M M M M M  M M M
-  | M M             M M    M M M M M M M M  M M M M M M M M  M M M M M M M M  M M M M M M M M  M M M M M M M M M M
+  | M M M M     M M M M    M M M M M M M M    M M M M M M        M M       M M M    M M M              M M M M M M M M M M
+  | M M  M M   M M  M M    M M       M M M    M M       M M      M M       M M M    M M M              M M M M M M M M M M
+  | M M   M M M M   M M    M M       M M M    M M       M M      M M       M M M    M M M              M M M
+  | M M    M M M    M M    M M       M M M    M M       M M M    M M       M M M    M M M              M M M M M M M M M M
+  | M M             M M    M M       M M M    M M       M M M    M M       M M M    M M M M M M M M    M M M
+  | M M             M M    M M M M M M M M    M M M M M M M M    M M M M M M M M    M M M M M M M M    M M M M M M M M M M
   |
-  | M M M M     M M M M    M MM       MM M  M M M M M M M M
-  | M M  M M   M M  M M    M MM       MM M  M M M M M M M M
-  | M M   M M M M   M M    M MM MM MM MM M  M M M
-  | M M    M M M    M M    M MM MM MM MM M  M M M M M M M M
-  | M M             M M    M MM       MM M          M M M M
-  | M M             M M    M MM       MM M  M M M M M M M M
+  | M M M M     M M M M    M MM       MM M    M M M M M M M M
+  | M M  M M   M M  M M    M MM       MM M    M M M M M M M M
+  | M M   M M M M   M M    M MM MM MM MM M    M M M
+  | M M    M M M    M M    M MM MM MM MM M    M M M M M M M M
+  | M M             M M    M MM       MM M            M M M M
+  | M M             M M    M MM       MM M    M M M M M M M M
   |
   */
   Route::get('/students','MahasiswaController@index')->name('mahasiswa.index');
