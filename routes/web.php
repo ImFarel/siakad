@@ -41,7 +41,8 @@ Route::group( [ 'prefix' => 'dashboard', 'middleware' => 'auth' ] , function() {
   Route::put('/students/update/{id}','MahasiswaController@update')->name('mahasiswa.update');
 
   Route::get('/students/attendances','AbsenMahasiswaController@index')->name('mahasiswa.absen.index');
-  Route::get('/students/attendances/create','AbsenMahasiswaController@create')->name('mahasiswa.absen.create');
+  Route::post('/students/attendances/bak-list','AbsenMahasiswaController@bak')->name('mahasiswa.absen.bak');
+  Route::post('/students/attendances/result','AbsenMahasiswaController@result')->name('mahasiswa.absen.result');
   Route::post('/students/attendances/process','AbsenMahasiswaController@store')->name('mahasiswa.absen.store');
   Route::get('/students/attendances/edit/{id}','AbsenMahasiswaController@edit')->name('mahasiswa.absen.edit');
   Route::put('/students/attendances/update/{id}','AbsenMahasiswaController@update')->name('mahasiswa.absen.update');

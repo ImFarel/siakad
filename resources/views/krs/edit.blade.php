@@ -49,37 +49,22 @@
                   <?php foreach ($exist as $keys => $values): ?>
 
                     <?php if ($value['kd_matkul'] == $values['kd_matkul']): ?>
-                      <?php $stat = true; break;?>
+                      <?php $stat = "style=display:none"; break;?>
                     <?php else: ?>
-                      <?php $stat = false;?>
+                      <?php $stat = '';?>
                     <?php endif; ?>
 
                   <?php endforeach; ?>
 
-                  <?php if ($stat): ?>
-                    <tr id="row-{{$value['kd_matkul']}}" style="display: none;">
+                    <tr id="row-{{$value['kd_matkul']}}" {{$stat}}>
                       <td>{{$value['kd_matkul']}}</td>
                       <td>{{$value['nama']}}</td>
-                      true
                       <td>{{$value['sks']}}</td>
                       <td>{{getDosen($value['dosen_id'])}}</td>
                       <td>
                         <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$value['kd_matkul']}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
                       </td>
                     </tr>
-
-                  <?php else: ?>
-                    <tr id="row-{{$value['kd_matkul']}}">
-                      <td>{{$value['kd_matkul']}}</td>
-                      <td>{{$value['nama']}}</td>
-                      false
-                      <td>{{$value['sks']}}</td>
-                      <td>{{getDosen($value['dosen_id'])}}</td>
-                      <td>
-                        <button class="btn choose btn-info btn-xs selectdata" data-row="row-{{$value['kd_matkul']}}" data-kd_matkul="{{$value['kd_matkul']}}" data-nama="{{$value['nama']}}" data-sks="{{$value['sks']}}" data-dismiss="modal" aria-label="Close" >Pilih</button>
-                      </td>
-                    </tr>
-                  <?php endif; ?>
                   <?php $no++ ?>
                 <?php endforeach; ?>
 

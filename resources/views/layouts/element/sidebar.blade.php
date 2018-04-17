@@ -61,7 +61,7 @@
         <!-- @ endcan -->
         @endif
 
-        <li class="header">&mdash;Mahasiswa Modules</li>
+        <li class="header">&mdash; Mahasiswa Modules</li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Mahasiswa</span>
             <span class="pull-right-container">
@@ -76,7 +76,7 @@
         </li>
 
 
-        <li class="header">&mdash;Dosen Modules</li>
+        <li class="header">&mdash; Dosen Modules</li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Dosen</span>
             <span class="pull-right-container">
@@ -89,7 +89,7 @@
           </ul>
         </li>
 
-        <li class="header">&mdash;Kurikulum Modules</li>
+        <li class="header">&mdash; Kurikulum Modules</li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Program Studi</span>
             <span class="pull-right-container">
@@ -137,7 +137,7 @@
         </li>
 
         @can('view_users')
-        <li class="header">&mdash;User Management</li>
+        <li class="header">&mdash; User Management</li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>User</span>
             <span class="pull-right-container">

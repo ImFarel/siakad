@@ -1,77 +1,123 @@
 @extends('layouts.template-dashboard')
 @section('title', 'Absen Mahasiswa')
 @section('page-title', 'Absen Mahasiswa')
+
 @section('css')
-<!-- DataTables -->
-<link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<!-- datepicker -->
+<link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('admin/bower_components/select2/dist/css/select2.min.css')}}">
+  <style media="screen">
+  .required{
+     color:red;
+     font-weight: 900;
+  }
+</style>
 @endsection
 
 @section('content')
 <div class="flash-msg">
   @include('flash::message')
 </div>
-<div class="box">
+<div class="row">
 
-  <div class="box-header">
-    <div class="col-md-3">
-      <a href="{{route('mahasiswa.create')}}">
-        <button type="button" class="btn btn-flat btn-info btn-flat">
-          <i class="fa fa-user"> </i> Tambah Mahasiswa Baru
-        </button>
-      </a>
-    </div>
-  </div>
+  <div class="col-md-12">
+    <div class="box box-info ">
 
-  <!-- /.box-header -->
-  <div class="box-body">
-    <table id="example1" class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>NIM</th>
-          <th>Nama Mahasiswa</th>
-          <th>Jenis Kelamin</th>
-          <th>Kelas</th>
-          <th>Email</th>
-          <th>Program Studi</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($data as $datas): ?>
-          <tr>
-            <td>{{$datas->nim}}</td>
-            <td>{{$datas->nama}}</td>
-            <td>{{$datas->jk}}</td>
-            <td>{{$datas->kelas}}</td>
-            <td>{{$datas->email}}</td>
-            <td>{{getStudi($datas->progstu_id)}}</td>
-            <td>
-              <div class="text-center">
-                <a title="Read More" href="{{route('mahasiswa.read',$datas->id)}}" class="btn btn-info btn-flat btn-md"><i class="fa fa-info"></i></a>
+      <div class="box-header with-border">
+        <h3 class="box-title">Summary Absen Hari ini</h3>
+      </div>
+      <!-- /.box-header -->
 
-                <a title="Edit" href="{{route('mahasiswa.edit',$datas->id)}}" class="btn btn-primary btn-flat btn-md"><i class="fa fa-edit"></i></a>
-                <?php array_push($entity, $datas->id) ?>
+      {!! Form::open(['route'=>['mahasiswa.absen.bak'],'role' =>'form']) !!}
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-grup">
+              <label>Tanggal:</label> <label class="required"> *</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::text('tanggal', null, ['id'=> 'datepicker', 'class' => 'form-control pull-right', 'required']) !!}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-grup">
+              <label>Semester:</label> <label class="required"> *</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-mortar-board"></i>
+                </div>
+                {!! Form::select('semester_id',$semester,null, ['class' => 'form-control select2' , 'style' => 'width:100%', 'required']) !!}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-grup">
+              <label>Matakuliah :</label> <label class="required"> *</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-book"></i>
+                </div>
+                {!! Form::select('kd_matkul',$matkul,null, ['class' => 'form-control select2' , 'style' => 'width:100%', 'required']) !!}
+
               </div>
 
-            </td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-grup">
+              <label>Tahun Akademik:</label> <label class="required"> *</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-mortar-board"></i>
+                </div>
+                {!! Form::select('tahun_ajaran',$ajaran,null, ['class' => 'form-control select2' , 'style' => 'width:100%', 'required']) !!}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer text-right">
+        <button type="submit" class="btn btn-flat btn-primary"> Cari Data</button>
+      </div>
+      <!-- /.box-footer -->
+      {!! Form::close() !!}
+    </div>
+
+
   </div>
-  <!-- /.box-body -->
 </div>
-<!-- /.box -->
+<!-- /.row -->
+
 
 @endsection
 
 @section('script')
-<!-- DataTables -->
-<script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{asset('admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <script type="text/javascript">
   $(function () {
-    $('#example1').DataTable()
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true,
+      format: 'yyyy-mm-dd',
+      todayHighlight: true,
+    })
+
   })
 </script>
 @endsection

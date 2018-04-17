@@ -12,10 +12,15 @@
   <link rel="stylesheet" href="{{asset('admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{asset('admin/bower_components/Ionicons/css/ionicons.min.css')}}">
+  <!-- Page -->
+
+  @yield('css')
+
+  <!-- ./Page -->
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/AdminLTE.min.css')}}">
-  <link rel="stylesheet" href="{{asset('admin/dist/css/skins/skin-blue.min.css')}}">
-  @yield('css')
+  <link rel="stylesheet" href="{{asset('admin/dist/css/skins/_all-skins.min.css')}}">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
